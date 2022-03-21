@@ -1,9 +1,12 @@
 package com.edward.edu.vo;
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 public class EduResult {
 	private int code;
 	private String message;
+	@JsonInclude(value= JsonInclude.Include.NON_NULL)
 	private Object data;
 	
 	public static EduResult ok(Object data){

@@ -8,6 +8,7 @@ import com.edward.edu.vo.EduResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController //RequestBody+Controller
@@ -27,7 +28,7 @@ public class TeacherController {
     }
 
     @RequestMapping("/addTeacher")
-    public EduResult addTeacher(@RequestBody EduTeacher eduTeacher) {
+    public EduResult addTeacher(@Valid @RequestBody EduTeacher eduTeacher) {
         int i = teacherService.addTeacher(eduTeacher);
         return EduResult.ok("count:"+i);
     }
