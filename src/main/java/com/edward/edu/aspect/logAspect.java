@@ -28,7 +28,7 @@ public class logAspect {
 //        eduLog.setRecordTime(new Date());
 //        eduLogMapper.addLog(eduLog);
 //    }
-    //eeeeeeeee
+
 
     @Around("execution(* *..*.*ServiceImpl.*(..))")
     public Object addlog(ProceedingJoinPoint joinPoint) {
