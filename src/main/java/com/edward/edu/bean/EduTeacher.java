@@ -1,6 +1,8 @@
 package com.edward.edu.bean;
 
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -11,11 +13,14 @@ public class EduTeacher implements Serializable {
     @NotBlank(message = "教师名称不能为空！")
     private String name;
     private Integer sort;
+    @Min(message = "只能是高级讲师或者首席讲师",value = 1)
+    @Max(message = "只能是高级讲师或者首席讲师",value = 2)
     private Integer level;
     @NotBlank(message = "教师资历不能为空！")
     private String career;
     @NotBlank(message = "教师简介不能为空！")
     private String intro;
+    @NotBlank(message = "教师简介不能为空！")
     private String avatar; //可能出现空格 用.trim()去除
     private boolean isDeleted;
     private Date gmtCreated;

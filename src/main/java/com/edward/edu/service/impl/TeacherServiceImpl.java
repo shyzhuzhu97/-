@@ -44,6 +44,7 @@ public class TeacherServiceImpl implements TeacherService {
         Date date = new Date();
         eduTeacher.setGmtCreated(date);
         eduTeacher.setGmtModified(date);
+        eduTeacher.setIsDeleted(false);
         int i = eduTeacherMapper.addTeacher(eduTeacher);
         if (i <= 0) {
             throw new EduException("添加讲师失败");
@@ -61,11 +62,30 @@ public class TeacherServiceImpl implements TeacherService {
         String imgName = UploadUtils.getImgName(file.getOriginalFilename());
         //得到文件名称
         try {
-            file.transferTo(new File(dateFolder,imgName));
+            file.transferTo(new File(dateFolder, imgName));
         } catch (IOException e) {
             e.printStackTrace();
             throw new EduException("上传图片失败");
         }
-        return EduResult.ok("imgPath",EduConstant.HOST+":8080/"+UploadUtils.getDateFolder()+"/"+imgName);
+        return EduResult.ok("imgPath", EduConstant.HOST + ":8080/" + UploadUtils.getDateFolder() + "/" + imgName);
+    }
+
+    @Override
+    public int deleteTeacher(List<Integer> ids) {
+        int count = eduTeacherMapper.deleteTeacher(ids);
+        if (count <= 0) {
+            throw new EduException("删除讲师失败");
+        }
+        return count;
+    }
+
+    @Override
+    public int updateTeacher(EduTeacher eduTeacher) {
+        eduTeacher.setGmtModified(new Date());
+        int count = eduTeacherMapper.updateTeacher(eduTeacher);
+        if (count <= 0) {
+            throw new EduException("修改讲师失败");
+        }
+        return count;
     }
 }

@@ -10,7 +10,21 @@
     <select id="findFourTeacher" resultType="com.edward.edu.bean.EduTeacher">
        SELECT *FROM edu_teacher WHERE is_deleted=0 ORDER BY RAND() LIMIT 4
     </select>
-    <insert id="addTeacher" parameterType="com.edward.edu.bean.EduTeacher" >
+    <insert id="addTeacher" parameterType="com.edward.edu.bean.EduTeacher">
         INSERT INTO `edu_manager`.`edu_teacher` (`name`, `sort`, `level`, `career`, `intro`, `avatar`, `is_deleted`, `gmt_created`, `gmt_modified`) VALUES (#{name}, #{sort},#{level}, #{career}, #{intro}, #{avatar}, #{isDeleted}, #{gmtCreated}, #{gmtModified});
     </insert>
+    <update id="deleteTeacher">
+        UPDATE edu_teacher SET is_deleted = 1
+        <where>
+            <if test="ids!=null and ids.size()>0">
+                <foreach collection="ids" separator="," open="id in (" close=")" item="id">
+                    #{id}
+                </foreach>
+            </if>
+        </where>
+        and is_deleted = 0
+    </update>
+    <update id="updateTeacher" parameterType="com.edward.edu.bean.EduTeacher">
+        UPDATE edu_teacher SET name=#{name},sort=#{sort},level=#{level},career=#{career},intro=#{intro},avatar=#{avatar},gmt_modified=#{gmtModified} where id = #{id} and is_deleted = 0
+    </update>
 </mapper>
