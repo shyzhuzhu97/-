@@ -36,7 +36,7 @@ public class logAspect {
         try {
             Object proceed = joinPoint.proceed();//调用原始代码中的方法
             EduLog eduLog = new EduLog();          //原始方法运行后
-            eduLog.setUsername("张三");
+            eduLog.setUsername("edward");
             eduLog.setOption(name);
             eduLog.setRecordTime(new Date());
             eduLogMapper.addLog(eduLog);

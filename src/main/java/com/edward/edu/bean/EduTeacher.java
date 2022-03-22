@@ -12,9 +12,9 @@ public class EduTeacher implements Serializable {
     private String name;
     private Integer sort;
     private Integer level;
-    @NotBlank(message = "教师简介不能为空！")
+    @NotBlank(message = "教师资历不能为空！")
     private String career;
-    @NotBlank(message = "教师介绍不能为空！")
+    @NotBlank(message = "教师简介不能为空！")
     private String intro;
     private String avatar; //可能出现空格 用.trim()去除
     private boolean isDeleted;
