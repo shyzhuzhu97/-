@@ -20,4 +20,6 @@ public interface TeacherService {
     int deleteTeacher(List<Integer> ids);
 
     int updateTeacher(EduTeacher eduTeacher);
+
+    EduResult conditionPageQuery(Integer currentPage, Integer limit, EduTeacher eduTeacher);//多条件分页查询讲师
 }

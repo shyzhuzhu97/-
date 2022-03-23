@@ -1,6 +1,9 @@
 package com.edward.edu.bean;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -23,7 +26,9 @@ public class EduTeacher implements Serializable {
     @NotBlank(message = "教师简介不能为空！")
     private String avatar; //可能出现空格 用.trim()去除
     private boolean isDeleted;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date gmtCreated;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date gmtModified;
 
     public int getId() {

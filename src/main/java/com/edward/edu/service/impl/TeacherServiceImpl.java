@@ -67,7 +67,8 @@ public class TeacherServiceImpl implements TeacherService {
             e.printStackTrace();
             throw new EduException("上传图片失败");
         }
-        return EduResult.ok("imgPath", EduConstant.HOST + ":8080/" + UploadUtils.getDateFolder() + "/" + imgName);
+
+        return EduResult.ok().data("imgPath", EduConstant.HOST + ":8080/" + UploadUtils.getDateFolder() + "/" + imgName);
     }
 
     @Override
@@ -87,5 +88,13 @@ public class TeacherServiceImpl implements TeacherService {
             throw new EduException("修改讲师失败");
         }
         return count;
+    }
+
+    @Override
+    public EduResult conditionPageQuery(Integer currentPage, Integer limit, EduTeacher eduTeacher) {
+        int totalRowsNum = eduTeacherMapper.totalRowsNum(eduTeacher);
+        int index = (currentPage-1)*limit; //得到limit的起始值
+        List<EduTeacher> currentPageTeacher = eduTeacherMapper.currentPageTeacher(index, limit, eduTeacher);
+        return EduResult.ok().data("total", totalRowsNum).data("rows", currentPageTeacher);
     }
 }
