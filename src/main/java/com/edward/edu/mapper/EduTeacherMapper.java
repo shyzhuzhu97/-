@@ -24,4 +24,6 @@ public interface EduTeacherMapper {
     int totalRowsNum(@Param("eduTeacher") EduTeacher eduTeacher); //查找条件下的总讲师数
 
     List<EduTeacher> currentPageTeacher(@Param("index") Integer index, @Param("limit") Integer limit, @Param("eduTeacher") EduTeacher eduTeacher); //返回当前页的讲师list集合
+
+    int deleteTeacherById(int deleteId);
 }

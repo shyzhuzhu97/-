@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.edward.edu.mapper.EduSubjectMapper">
+    <select id="findSubjectByName" parameterType="string" resultType="com.edward.edu.bean.EduSubject">
+        SELECT * FROM edu_subject WHERE title = #{subjectOneName}
+    </select>
+    
+    <insert id="addSubject" parameterType="com.edward.edu.bean.EduSubject">
+        <selectKey keyProperty="id" order="AFTER" resultType="int">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO edu_subject(title, is_deleted,gmt_created, gmt_modified,sort,parent_id)
+        VALUE (#{title},#{isDeleted},#{gmtCreated},#{gmtModified},#{sort},#{parentId})
+    </insert>
+
+    <select id="findSubjectAll" resultType="com.edward.edu.bean.EduSubject">
+        SELECT * FROM edu_subject WHERE is_deleted = 0
+    </select>
+    <select id="getTitleById" parameterType="int" resultType="com.edward.edu.bean.EduSubject">
+        SELECT * FROM edu_subject WHERE id = #{parentId}
+    </select>
+</mapper>

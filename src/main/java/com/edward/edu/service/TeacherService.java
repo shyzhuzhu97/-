@@ -11,7 +11,7 @@ import java.util.List;
 public interface TeacherService {
     List<EduTeacher> findFourTeacher();
 
-    EduTeacher findTeacherById(Integer teacherId);
+    EduResult findTeacherById(Integer teacherId);
 
     int addTeacher(EduTeacher eduTeacher);
 
@@ -22,4 +22,6 @@ public interface TeacherService {
     int updateTeacher(EduTeacher eduTeacher);
 
     EduResult conditionPageQuery(Integer currentPage, Integer limit, EduTeacher eduTeacher);//多条件分页查询讲师
+
+    EduResult deleteTeacherById(int deleteId);
 }

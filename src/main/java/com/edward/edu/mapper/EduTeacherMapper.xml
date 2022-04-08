@@ -58,8 +58,8 @@
 
     <update id="updateTeacher" parameterType="com.edward.edu.bean.EduTeacher">
         UPDATE edu_teacher
-        SET name         = #{name}, sort = #{sort}, level = #{level}, career = #{career}, intro = #{intro},
-            avatar       = #{avatar}, gmt_modified = #{gmtModified}
+        SET name= #{name}, sort = #{sort}, level = #{level}, career = #{career}, intro = #{intro},
+            avatar= #{avatar}, gmt_modified = #{gmtModified}
         WHERE id = #{id} AND is_deleted = 0
     </update>
 
@@ -73,6 +73,12 @@
     <select id="currentPageTeacher" resultType="com.edward.edu.bean.EduTeacher">
         SELECT * FROM edu_teacher
         <include refid="conditionTeacher"></include>
+        ORDER BY gmt_modified DESC
         LIMIT #{index} , #{limit}
     </select>
+
+    <!--根据id删除讲师-->
+    <update id="deleteTeacherById" parameterType="int">
+        UPDATE edu_teacher SET is_deleted = 1 WHERE id = #{deleteId}
+    </update>
 </mapper>

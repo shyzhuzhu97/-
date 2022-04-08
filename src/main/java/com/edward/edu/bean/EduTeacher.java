@@ -2,6 +2,7 @@ package com.edward.edu.bean;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Max;
@@ -10,7 +11,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
-
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class EduTeacher implements Serializable {
     private int id;
     @NotBlank(message = "教师名称不能为空！")
@@ -23,7 +24,7 @@ public class EduTeacher implements Serializable {
     private String career;
     @NotBlank(message = "教师简介不能为空！")
     private String intro;
-    @NotBlank(message = "教师简介不能为空！")
+    @NotBlank(message = "教师头像不能为空！")
     private String avatar; //可能出现空格 用.trim()去除
     private boolean isDeleted;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -47,20 +48,12 @@ public class EduTeacher implements Serializable {
         this.name = name;
     }
 
-    public String getIntro() {
-        return intro;
+    public Integer getSort() {
+        return sort;
     }
 
-    public void setIntro(String intro) {
-        this.intro = intro;
-    }
-
-    public String getCareer() {
-        return career;
-    }
-
-    public void setCareer(String career) {
-        this.career = career;
+    public void setSort(Integer sort) {
+        this.sort = sort;
     }
 
     public Integer getLevel() {
@@ -71,28 +64,36 @@ public class EduTeacher implements Serializable {
         this.level = level;
     }
 
+    public String getCareer() {
+        return career;
+    }
+
+    public void setCareer(String career) {
+        this.career = career;
+    }
+
+    public String getIntro() {
+        return intro;
+    }
+
+    public void setIntro(String intro) {
+        this.intro = intro;
+    }
+
     public String getAvatar() {
         return avatar;
     }
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
-    } //可能出现空格 用.trim()去除
-
-    public Integer getSort() {
-        return sort;
-    }
-
-    public void setSort(Integer sort) {
-        this.sort = sort;
     }
 
     public boolean getIsDeleted() {
         return isDeleted;
     }
 
-    public void setIsDeleted(boolean isDeleted) {
-        this.isDeleted = isDeleted;
+    public void setIsDeleted(boolean deleted) {
+        isDeleted = deleted;
     }
 
     public Date getGmtCreated() {
@@ -113,10 +114,17 @@ public class EduTeacher implements Serializable {
 
     @Override
     public String toString() {
-        return "EduTeacher [id=" + id + ", name=" + name + ", career=" + career + ", intro=" + intro + ", level="
-                + level + ", avatar=" + avatar + ", sort=" + sort + ", isDeleted=" + isDeleted + ", gmtCreated="
-                + gmtCreated + ", gmtModified=" + gmtModified + "]";
+        return "EduTeacher{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", sort=" + sort +
+                ", level=" + level +
+                ", career='" + career + '\'' +
+                ", intro='" + intro + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", isDeleted=" + isDeleted +
+                ", gmtCreated=" + gmtCreated +
+                ", gmtModified=" + gmtModified +
+                '}';
     }
-
-
 }

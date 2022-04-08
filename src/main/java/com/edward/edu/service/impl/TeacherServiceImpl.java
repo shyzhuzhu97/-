@@ -34,9 +34,13 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public EduTeacher findTeacherById(Integer teacherId) {
-        EduTeacher teacherById = eduTeacherMapper.findTeacherById(teacherId);
-        return teacherById;
+    public EduResult findTeacherById(Integer teacherId) {
+        EduTeacher teacher = eduTeacherMapper.findTeacherById(teacherId);
+        if (teacher == null) {
+            throw new EduException("查找失败请重试");
+
+        }
+        return EduResult.ok().data("teacher", teacher);
     }
 
     @Override
@@ -68,7 +72,7 @@ public class TeacherServiceImpl implements TeacherService {
             throw new EduException("上传图片失败");
         }
 
-        return EduResult.ok().data("imgPath", EduConstant.HOST + ":8080/" + UploadUtils.getDateFolder() + "/" + imgName);
+        return EduResult.ok().data("imgPath", EduConstant.HOST + "/" + UploadUtils.getDateFolder() + "/" + imgName);
     }
 
     @Override
@@ -93,8 +97,17 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public EduResult conditionPageQuery(Integer currentPage, Integer limit, EduTeacher eduTeacher) {
         int totalRowsNum = eduTeacherMapper.totalRowsNum(eduTeacher);
-        int index = (currentPage-1)*limit; //得到limit的起始值
+        int index = (currentPage - 1) * limit; //得到limit的起始值
         List<EduTeacher> currentPageTeacher = eduTeacherMapper.currentPageTeacher(index, limit, eduTeacher);
         return EduResult.ok().data("total", totalRowsNum).data("rows", currentPageTeacher);
+    }
+
+    @Override
+    public EduResult deleteTeacherById(int deleteId) {
+        int count = eduTeacherMapper.deleteTeacherById(deleteId);
+        if (count <= 0) {
+            throw new EduException("删除失败请重试");
+        }
+        return EduResult.ok();
     }
 }

@@ -9,7 +9,7 @@ public class EduSubject implements Serializable {
     private Integer parentId;
     private Integer sort;
     private Integer isDeleted;
-    private Date gmtCreate;
+    private Date gmtCreated;
     private Date gmtModified;
 
     public Integer getId() {
@@ -52,12 +52,12 @@ public class EduSubject implements Serializable {
         this.sort = sort;
     }
 
-    public Date getGmtCreate() {
-        return gmtCreate;
+    public Date getGmtCreated() {
+        return gmtCreated;
     }
 
-    public void setGmtCreate(Date gmtCreate) {
-        this.gmtCreate = gmtCreate;
+    public void setGmtCreated(Date gmtCreated) {
+        this.gmtCreated = gmtCreated;
     }
 
     public Date getGmtModified() {
@@ -70,9 +70,14 @@ public class EduSubject implements Serializable {
 
     @Override
     public String toString() {
-        return "EduSubject [id=" + id + ", title=" + title + ", parentId=" + parentId + ", sort=" + sort
-                + ", isDeleted=" + isDeleted + ", gmtCreate=" + gmtCreate + ", gmtModified=" + gmtModified + "]";
+        return "EduSubject{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", parentId=" + parentId +
+                ", sort=" + sort +
+                ", isDeleted=" + isDeleted +
+                ", gmtCreated=" + gmtCreated +
+                ", gmtModified=" + gmtModified +
+                '}';
     }
-
-
 }
