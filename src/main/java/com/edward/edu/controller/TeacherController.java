@@ -81,9 +81,18 @@ public class TeacherController {
 
     //根据id查找讲师
     @RequestMapping("/findTeacherById/{id}")
-    public EduResult findTeacherById(@PathVariable int id) { //可能存在批量删除的情况
+    public EduResult findTeacherById(@PathVariable int id) {
         EduResult result = teacherService.findTeacherById(id);
         return result;
     }
+
+    //根据id查找讲师
+    @RequestMapping("/findTeacherAll")
+    public EduResult findTeacherAll() {
+        EduResult result = teacherService.findTeacherAll();
+        return result;
+    }
+
+
 
 }

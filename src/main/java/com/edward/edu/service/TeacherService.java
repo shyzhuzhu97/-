@@ -24,4 +24,6 @@ public interface TeacherService {
     EduResult conditionPageQuery(Integer currentPage, Integer limit, EduTeacher eduTeacher);//多条件分页查询讲师
 
     EduResult deleteTeacherById(int deleteId);
+
+    EduResult findTeacherAll();
 }

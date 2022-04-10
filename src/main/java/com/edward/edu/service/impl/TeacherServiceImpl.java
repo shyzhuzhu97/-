@@ -110,4 +110,10 @@ public class TeacherServiceImpl implements TeacherService {
         }
         return EduResult.ok();
     }
+
+    @Override
+    public EduResult findTeacherAll() {
+        List<EduTeacher> teacherList = eduTeacherMapper.findTeacherAll();
+        return EduResult.ok().data("teacherList",teacherList);
+    }
 }
