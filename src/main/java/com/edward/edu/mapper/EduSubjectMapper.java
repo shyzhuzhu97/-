@@ -16,4 +16,10 @@ public interface EduSubjectMapper {
     List<EduSubject> findSubjectAll();
 
     EduSubject getTitleById(Integer parentId);
+
+    List<EduSubject> getSubjectOne();
+
+    List<EduSubject> getSubjectTwo(Integer id);
+
+    List<EduSubject> querySubject(String title);
 }

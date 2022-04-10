@@ -19,4 +19,13 @@
     <select id="getTitleById" parameterType="int" resultType="com.edward.edu.bean.EduSubject">
         SELECT * FROM edu_subject WHERE id = #{parentId}
     </select>
+    <select id="getSubjectOne" resultType="com.edward.edu.bean.EduSubject">
+        SELECT id,title FROM edu_subject WHERE is_deleted = 0 AND parent_id = 0
+    </select>
+    <select id="getSubjectTwo" parameterType="int" resultType="com.edward.edu.bean.EduSubject">
+        SELECT id,title FROM edu_subject WHERE is_deleted = 0 AND parent_id = #{id}
+    </select>
+    <select id="querySubject" parameterType="string" resultType="com.edward.edu.bean.EduSubject">
+        SELECT id,title FROM edu_subject WHERE is_deleted = 0 AND title like "%${title}%"
+    </select>
 </mapper>

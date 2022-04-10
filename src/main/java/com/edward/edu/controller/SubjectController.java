@@ -5,10 +5,12 @@ import com.edward.edu.bean.EduSubject;
 import com.edward.edu.exception.EduException;
 import com.edward.edu.listener.ExcelListener;
 import com.edward.edu.mapper.EduSubjectMapper;
+import com.edward.edu.service.SubjectService;
 import com.edward.edu.vo.EduResult;
 import com.edward.edu.vo.ExcelVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,6 +32,26 @@ public class SubjectController {
 
     @Autowired
     private EduSubjectMapper eduSubjectMapper;
+
+    @Autowired
+    private SubjectService subjectService;
+
+
+    @RequestMapping("/getSubjectOne")
+    public EduResult getSubjectOne() {
+        EduResult result = subjectService.getSubjectOne();
+        return result;
+    }
+    @RequestMapping("/getSubjectTwo/{id}")
+    public EduResult getSubjectTwo(@PathVariable Integer id) {
+        EduResult result = subjectService.getSubjectTwo(id);
+        return result;
+    }
+    @RequestMapping("/querySubject/{title}")
+    public EduResult querySubject(@PathVariable String title) {
+        EduResult result = subjectService.querySubject(title);
+        return result;
+    }
 
 
     @RequestMapping("/uploadExcel")

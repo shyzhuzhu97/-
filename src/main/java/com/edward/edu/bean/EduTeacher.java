@@ -13,7 +13,7 @@ import java.io.Serializable;
 import java.util.Date;
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class EduTeacher implements Serializable {
-    private int id;
+    private Integer id;
     @NotBlank(message = "教师名称不能为空！")
     private String name;
     private Integer sort;
