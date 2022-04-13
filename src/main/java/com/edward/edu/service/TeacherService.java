@@ -26,4 +26,6 @@ public interface TeacherService {
     EduResult deleteTeacherById(int deleteId);
 
     EduResult findTeacherAll();
+
+    EduResult deleteIds(List<Integer> ids);
 }

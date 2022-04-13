@@ -81,4 +81,12 @@
     <update id="deleteTeacherById" parameterType="int">
         UPDATE edu_teacher SET is_deleted = 1 WHERE id = #{deleteId}
     </update>
+    <update id="deleteIds">
+        UPDATE edu_teacher SET is_deleted = 1
+        <where>
+            <foreach collection="ids" item="id" open="id in (" close=")" separator=",">
+                #{id}
+            </foreach>
+        </where>
+    </update>
 </mapper>

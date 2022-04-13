@@ -16,10 +16,19 @@ public class EduVideo {
     private Boolean isFree;
     private Long duration;
     private String status;
-    private Long size;
+    private String size;
     private Long version;
     private Date gmtCreated;
     private Date gmtModified;
+    private String sort;
+
+    public String getSort() {
+        return sort;
+    }
+
+    public void setSort(String sort) {
+        this.sort = sort;
+    }
 
     public Integer getId() {
         return id;
@@ -77,12 +86,12 @@ public class EduVideo {
         this.playCount = playCount;
     }
 
-    public Boolean getFree() {
+    public Boolean getIsFree() {
         return isFree;
     }
 
-    public void setFree(Boolean free) {
-        isFree = free;
+    public void setIsFree(Boolean isFree) {
+        this.isFree = isFree;
     }
 
     public Long getDuration() {
@@ -101,11 +110,11 @@ public class EduVideo {
         this.status = status;
     }
 
-    public Long getSize() {
+    public String getSize() {
         return size;
     }
 
-    public void setSize(Long size) {
+    public void setSize(String size) {
         this.size = size;
     }
 
@@ -146,10 +155,11 @@ public class EduVideo {
                 ", isFree=" + isFree +
                 ", duration=" + duration +
                 ", status='" + status + '\'' +
-                ", size=" + size +
+                ", size='" + size + '\'' +
                 ", version=" + version +
                 ", gmtCreated=" + gmtCreated +
                 ", gmtModified=" + gmtModified +
+                ", sort='" + sort + '\'' +
                 '}';
     }
 }

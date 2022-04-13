@@ -86,10 +86,16 @@ public class TeacherController {
         return result;
     }
 
-    //根据id查找讲师
+    //查找讲师
     @RequestMapping("/findTeacherAll")
     public EduResult findTeacherAll() {
         EduResult result = teacherService.findTeacherAll();
+        return result;
+    }
+
+    @RequestMapping("/deleteIds")
+    public EduResult deleteIds(@RequestBody List<Integer> ids){
+        EduResult result = teacherService.deleteIds(ids);
         return result;
     }
 

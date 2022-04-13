@@ -116,4 +116,17 @@ public class TeacherServiceImpl implements TeacherService {
         List<EduTeacher> teacherList = eduTeacherMapper.findTeacherAll();
         return EduResult.ok().data("teacherList",teacherList);
     }
+
+    @Override
+    public EduResult deleteIds(List<Integer> ids) {
+        if (ids.size() == 0) {
+            throw new EduException("未选择删除对象");
+        }
+        int count = eduTeacherMapper.deleteIds(ids);
+        if (count <= 0) {
+            throw new EduException("删除失败，请重试");
+
+        }
+        return EduResult.ok().data("count", count);
+    }
 }

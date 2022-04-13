@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.edward.edu.mapper.EduChapterMapper">
+    <insert id="addChapter" parameterType="com.edward.edu.bean.EduChapter">
+        <selectKey keyProperty="id" order="AFTER" resultType="int">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO edu_chapter(course_id, title, sort, gmt_created, gmt_modified)
+        VALUE (#{courseId},#{title},#{sort},#{gmtCreated},#{gmtModified})
+    </insert>
+    <select id="findChapterAll" parameterType="int" resultMap="chapterAndVideo">
+        select a.id,
+            a.title,
+            a.sort,
+            a.gmt_created,
+            a.gmt_modified,
+            b.id videoid,
+            b.video_original_name,
+            b.is_free,
+            b.duration,
+            b.size,
+            b.sort videosort
+            FROM
+            edu_chapter a
+            LEFT JOIN
+            edu_video b
+            ON
+            a.id = b.chapter_id
+            WHERE
+            a.course_id = #{courseId}
+    </select>
+    <resultMap id="chapterAndVideo" type="com.edward.edu.bean.EduChapter">
+        <!--我们执行完成下面的sql语句以后 会得到一个结果集 我要把结果集装到哪里去 在这里指定
+                   id表示主键
+                   property表示你要把从mysql字段中查询得到的值装到EduChapter类里面的那个属性上面去 你自己指定
+                   column 表示查询数据库从那个字段中获取值
+               -->
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="sort" column="sort"/>
+        <result property="gmtCreated" column="gmt_created"/>
+        <result property="gmtModified" column="gmt_modified"/>
+
+        <!--collection表示集合属性 一对多-->
+        <collection property="videoList" ofType="com.edward.edu.bean.EduVideo">
+            <id property="id" column="videoid"/>
+            <result property="videoOriginalName" column="video_original_name"/>
+            <result property="isFree" column="is_free"/>
+            <result property="sort" column="videosort"/>
+            <result property="duration" column="duration"/>
+            <result property="size" column="size"/>
+        </collection>
+        <!--这个表示对象属性 多对一
+        <association property="" xxxType></association>
+        -->
+    </resultMap>
+</mapper>

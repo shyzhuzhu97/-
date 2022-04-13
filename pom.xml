@@ -65,6 +65,12 @@
 			<artifactId>easyexcel</artifactId>
 			<version>3.0.5</version>
 		</dependency>
+		<!--获得视频时长jar-->
+		<dependency>
+			<groupId>ws.schild</groupId>
+			<artifactId>jave-all-deps</artifactId>
+			<version>2.5.1</version>
+		</dependency>
 
 	</dependencies>
 

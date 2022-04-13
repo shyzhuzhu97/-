@@ -10,7 +10,7 @@ public class EduChapter {
     private Integer courseId;
     @NotBlank(message = "章节名称不能为空")
     private String title;
-    private Integer sort;
+    private String sort;
     private Date gmtCreated;
     private Date gmtModified;
     //一个章节下面 有多个小节 所以是一个章节对象 有一个集合小节对象
@@ -40,11 +40,11 @@ public class EduChapter {
         this.title = title;
     }
 
-    public Integer getSort() {
+    public String getSort() {
         return sort;
     }
 
-    public void setSort(Integer sort) {
+    public void setSort(String sort) {
         this.sort = sort;
     }
 
